@@ -1,0 +1,19 @@
+sudo是root管理员权限,如果在root账户下操作则不需要
+国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务，例如：
+1.Docker 官方提供的中国 registry mirror:     https://docs.docker.com/registry/recipes/mirror/#use-case-the-china-registry-mirror
+2.阿里云加速器:         https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Fcr.console.aliyun.com%2F#/accelerator
+3.DaoCloud 加速器:     https://www.daocloud.io/mirror#accelerator-doc
+在/etc/docker/  文件夹下新建一个文件daemon.json文件(有则直接修改),并且在其中写入:
+{
+  "registry-mirrors": [
+    "https://registry.docker-cn.com"
+  ]
+}
+之后重新启动服务。
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+
+然后让我们从镜像中装一个Tomcat试验一下:
+使用docker pull tomcat命令,会直接安装latest版本的Tomcat
+安装完成后试验一下运行Tomcat:      docker run -p 8080:8080 tomcat
+直接去浏览器输入ip: 端口号 即可访问到Tomcat首页
