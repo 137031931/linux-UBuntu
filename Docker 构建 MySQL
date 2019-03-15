@@ -1,0 +1,20 @@
+首先用docker pull mysql,我这里用mysql:5.7.22
+docker run -p 3306:3306 --name mysql \
+-v /usr/local/docker/mysql/logs:/var/log/mysql \
+-v /usr/local/docker/mysql/data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d mysql:5.7.22
+
+docker run -it --rm mysql:5.7.22 bash
+-it, 以交互的形式
+--rm,使用完成后删除的形式
+run,启动mysql:5.7.22容器
+
+使用whereis mysql命令可以查询出MySQL的安装路径
+
+docker rm -f 9dc23fed41ca强制删除容器
+
+docker exec -it mysql bash以交互的形式进入容器
+用echo "max_allowed_packet= 126M" >> mysqld.cnf
+把max_allowed_packet= 126M
+写入到/etc/mysql/mysql.conf.d#中的
