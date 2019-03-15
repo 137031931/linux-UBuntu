@@ -1,1 +1,20 @@
+在root账户中查看文件和文件权限直接用ll,但是其他非root账户则用ls看文件列表,-al查看权限
+启动Tomcat命令: docker run -p 8080:8080 tomcat  
+在一个空白目录中，建立一个文本文件，并命名为 Dockerfile：
+其内容为：
 
+FROM tomcat:9-jre8
+
+WORKDIR /usr/local/tomcat/wepapps/ROOT
+
+RUN rm -fr *
+
+COPY my-shop-web-admin-1.0.0-SNAPSHOT.zip .
+
+RUN unzip my-shop-web-admin-1.0.0-SNAPSHOT.zip
+
+RUN rm -fr my-shop-web-admin-1.0.0-SNAPSHOT.zip
+
+WORKDIR /usr/local/tomcat
+这里我们使用了 docker build 命令进行镜像构建。其格式为：
+docker build [选项] <上下文路径/URL/->
