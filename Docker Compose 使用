@@ -1,0 +1,24 @@
+
+术语
+首先介绍几个术语。
+服务 (service)：一个应用容器，实际上可以运行多个相同镜像的实例。
+项目 (project)：由一组关联的应用容器组成的一个完整业务单元。
+可见，一个项目可以由多个服务（容器）关联而成，Compose 面向项目进行管理。
+
+
+docker-compose.yml
+****注意这里的缩进只能有空格不可以用tab***
+编写 docker-compose.yml 文件，这个是 Compose 使用的主模板文件。
+version: '3'
+services: 
+  tomcat:
+    restart: always
+    image: tomcat:9-jre8
+    container_name: tomcat
+    ports: 
+      - 8080:8080 
+      
+运行 compose 项目
+$ docker-compose up
+停止
+$ docker-compose down
