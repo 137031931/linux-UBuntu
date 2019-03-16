@@ -1,0 +1,21 @@
+Compose 支持 Linux、macOS、Windows 10 三大平台。
+Compose 可以通过 Python 的包管理工具 pip 进行安装，也可以直接下载编译好的二进制文件使用，甚至能够直接在 Docker 容器中运行。
+前两种方式是传统方式，适合本地环境下安装使用；最后一种方式则不破坏系统环境，更适合云计算场景。
+Docker for Mac 、Docker for Windows 自带 docker-compose 二进制文件，安装 Docker 之后可以直接使用。
+$ docker-compose --version
+
+docker-compose version 1.17.1, build 6d101fb
+Linux 系统请使用以下介绍的方法安装。
+
+二进制包
+在 Linux 上的也安装十分简单，从 官方 GitHub Release 处直接下载编译好的二进制文件即可。
+例如，在 Linux 64 位系统上直接下载对应的二进制包。
+我这里用1.22.0版本
+下载docker-compose:
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+给予docker-compose可执行权限
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+卸载
+如果是二进制包方式安装的，删除二进制文件即可。
+$ sudo rm /usr/local/bin/docker-compose
